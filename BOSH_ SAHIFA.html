@@ -1,0 +1,500 @@
+
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>7-sinf | Sahifani formatlash va Print Preview</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: linear-gradient(135deg, #e8f1ff, #f5f0ff);
+    color: #26354a;
+    line-height: 1.75;
+}
+
+.container {
+    max-width: 1100px;
+    margin: 30px auto;
+    padding: 0 18px;
+}
+
+header {
+    background: linear-gradient(135deg, #283593, #1976d2, #26a69a);
+    color: white;
+    text-align: center;
+    padding: 42px 22px;
+    border-radius: 22px;
+    box-shadow: 0 10px 25px #1b3a571f;
+}
+
+header h1 {
+    font-size: 32px;
+    margin: 0 0 12px;
+}
+
+header p {
+    font-size: 18px;
+    margin: 5px;
+}
+
+.info {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    gap: 16px;
+    margin: 24px 0;
+}
+
+.info-card, .section {
+    background: white;
+    border-radius: 17px;
+    padding: 23px;
+    box-shadow: 0 5px 18px #20305012;
+}
+
+.info-card {
+    border-top: 5px solid #3949ab;
+}
+
+.info-card strong {
+    display: block;
+    color: #303f9f;
+    margin-bottom: 5px;
+}
+
+.section {
+    margin: 20px 0;
+}
+
+.section h2 {
+    color: #283593;
+    border-bottom: 2px solid #dce4ff;
+    padding-bottom: 10px;
+    margin-top: 0;
+}
+
+.section h3 {
+    color: #087e8b;
+}
+
+.goal {
+    background: #f1f6ff;
+    border-left: 5px solid #3f51b5;
+    border-radius: 10px;
+    padding: 15px 18px;
+    margin: 12px 0;
+}
+
+.note {
+    background: #fff8e1;
+    border: 2px solid #ffca55;
+    border-radius: 15px;
+    padding: 22px;
+    margin: 20px 0;
+}
+
+.note h3 {
+    color: #a65b00;
+    margin-top: 0;
+}
+
+.example {
+    background: #eef5ff;
+    border: 1px solid #cbdcff;
+    border-radius: 12px;
+    padding: 18px;
+    margin: 15px 0;
+}
+
+.steps {
+    list-style: none;
+    padding: 0;
+    counter-reset: step;
+}
+
+.steps li {
+    counter-increment: step;
+    position: relative;
+    padding: 13px 15px 13px 58px;
+    background: #f7f9ff;
+    border: 1px solid #e1e7fa;
+    border-radius: 12px;
+    margin: 12px 0;
+}
+
+.steps li::before {
+    content: counter(step);
+    position: absolute;
+    left: 14px;
+    top: 12px;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    color: white;
+    background: #3949ab;
+    border-radius: 50%;
+    font-weight: bold;
+}
+
+.word-menu {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 15px 0;
+}
+
+.word-menu span {
+    background: #e8eaff;
+    border: 1px solid #c5caff;
+    color: #283593;
+    padding: 8px 13px;
+    border-radius: 9px;
+    font-weight: bold;
+}
+
+.page-demo {
+    max-width: 390px;
+    min-height: 280px;
+    margin: 22px auto;
+    padding: 28px;
+    background: white;
+    border: 1px solid #b9c5d5;
+    box-shadow: 0 7px 20px #2030501a;
+    position: relative;
+}
+
+.page-demo h3 {
+    text-align: center;
+    color: #283593;
+}
+
+.page-demo p {
+    text-align: justify;
+    font-size: 14px;
+}
+
+.margin-label {
+    color: #087e8b;
+    font-size: 12px;
+    text-align: center;
+}
+
+.question {
+    padding: 14px 17px;
+    background: #f8f7ff;
+    border-left: 4px solid #7e57c2;
+    border-radius: 9px;
+    margin: 11px 0;
+}
+
+.summary {
+    text-align: center;
+    background: linear-gradient(135deg, #263238, #3949ab);
+    color: white;
+    padding: 30px 20px;
+    border-radius: 18px;
+    margin-top: 24px;
+}
+
+.summary h2 {
+    color: white;
+}
+
+.summary .rule {
+    font-size: 23px;
+    font-weight: bold;
+    color: #ffecb3;
+}
+
+footer {
+    text-align: center;
+    color: #65758b;
+    padding: 25px 10px;
+}
+
+@media (max-width: 600px) {
+    header h1 {
+        font-size: 25px;
+    }
+
+    .section, .info-card {
+        padding: 18px;
+    }
+
+    .container {
+        padding: 0 10px;
+    }
+}
+
+@media print {
+    body {
+        background: white;
+    }
+
+    .container {
+        max-width: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    header, .section, .info-card, .summary {
+        box-shadow: none;
+        break-inside: avoid;
+    }
+
+    .section {
+        border: 1px solid #ddd;
+    }
+}
+</style>
+</head>
+
+<body>
+<div class="container">
+
+<header>
+    <h1>💻 INFORMATIKA VA AXBOROT TEXNOLOGIYALARI</h1>
+    <p><strong>7-SINF</strong></p>
+    <p>📄 Sahifani formatlash buyruqlaridan foydalanish</p>
+    <p>🖨 Print Preview buyrug‘idan foydalanish</p>
+    <p>⏱ Dars davomiyligi: 45 daqiqa</p>
+</header>
+
+<div class="info">
+    <div class="info-card">
+        <strong>📚 Fan</strong>
+        Informatika va axborot texnologiyalari
+    </div>
+    <div class="info-card">
+        <strong>🎓 Sinf</strong>
+        7-sinf
+    </div>
+    <div class="info-card">
+        <strong>📝 Dars turi</strong>
+        Yangi bilim va amaliy mashg‘ulot
+    </div>
+    <div class="info-card">
+        <strong>🎯 Asosiy ko‘nikma</strong>
+        Sahifani sozlash va chop etishdan oldin tekshirish
+    </div>
+</div>
+
+<section class="section">
+<h2>🎯 1. Darsning maqsadi</h2>
+
+<div class="goal">
+<strong>📘 Ta’limiy maqsad:</strong>
+O‘quvchilarga sahifa o‘lchami, yo‘nalishi, hoshiyalari va
+chop etishdan oldin ko‘rib chiqish buyruqlarini o‘rgatish.
+</div>
+
+<div class="goal">
+<strong>🌱 Tarbiyaviy maqsad:</strong>
+Hujjatlarni tartibli tayyorlash, qog‘oz va siyohni tejash,
+kompyuterda mas’uliyat bilan ishlashga o‘rgatish.
+</div>
+
+<div class="goal">
+<strong>🧠 Rivojlantiruvchi maqsad:</strong>
+Mustaqil ishlash, hujjat ko‘rinishini tahlil qilish va
+kerakli formatlash buyruqlarini tanlash ko‘nikmalarini rivojlantirish.
+</div>
+</section>
+
+<section class="section">
+<h2>🏆 2. Kutiladigan natijalar</h2>
+<p>Dars yakunida o‘quvchi:</p>
+<ul>
+<li>✅ Sahifani formatlash tushunchasini izohlaydi.</li>
+<li>✅ Sahifa yo‘nalishini o‘zgartira oladi.</li>
+<li>✅ Sahifa hoshiyalarini sozlay oladi.</li>
+<li>✅ Qog‘oz o‘lchamini tanlay oladi.</li>
+<li>✅ Print Preview orqali hujjatni oldindan ko‘radi.</li>
+<li>✅ Chop etishdan oldin xatolarni tekshiradi.</li>
+</ul>
+</section>
+
+<section class="section">
+<h2>🖥 3. Dars jihozlari</h2>
+<ul>
+<li>Kompyuter va Microsoft Word dasturi.</li>
+<li>Projektor yoki interaktiv doska.</li>
+<li>Namunaviy matnli hujjat.</li>
+<li>Printer mavjud bo‘lsa, undan foydalanish mumkin.</li>
+</ul>
+</section>
+
+<section class="section">
+<h2>📋 4. Darsning borishi</h2>
+
+<h3>I. Tashkiliy qism — 3 daqiqa</h3>
+<ul>
+<li>Salomlashish va davomatni aniqlash.</li>
+<li>O‘quvchilarni darsga tayyorlash.</li>
+<li>Kompyuterda ishlash qoidalarini eslatish.</li>
+</ul>
+
+<h3>II. O‘tgan mavzuni takrorlash — 5 daqiqa</h3>
+<p>O‘tgan darsimiz: <strong>“Matnni ustunlarga bo‘lish”</strong>.</p>
+<ol>
+<li>Matnni ustunlarga bo‘lish nima uchun kerak?</li>
+<li>Word dasturida ustunlar qaysi menyudan sozlanadi?</li>
+<li>Gazeta va jurnallarda matnlar nima uchun ustunlarda beriladi?</li>
+</ol>
+</section>
+
+<section class="section">
+<h2>📖 5. Yangi mavzu — 12 daqiqa</h2>
+
+<h3>A. Sahifani formatlash nima?</h3>
+<p>
+Sahifani formatlash — hujjat sahifasining ko‘rinishini,
+o‘lchamini, yo‘nalishini va chetlaridagi bo‘sh joylarni sozlashdir.
+</p>
+
+<h3>B. Word dasturidagi muhim buyruqlar</h3>
+
+<div class="word-menu">
+<span>Макет (Layout)</span>
+<span>Поля (Margins)</span>
+<span>Ориентация (Orientation)</span>
+<span>Размер (Size)</span>
+<span>Печать (Print)</span>
+</div>
+
+<div class="example">
+<strong>1. Поля — Hoshiyalar</strong>
+<p>Sahifaning yuqori, pastki, chap va o‘ng chetlaridagi
+bo‘sh joylarni belgilaydi.</p>
+
+<strong>2. Ориентация — Yo‘nalish</strong>
+<p><strong>Книжная</strong> — tik holat.</p>
+<p><strong>Альбомная</strong> — yotiq holat.</p>
+
+<strong>3. Размер — Qog‘oz o‘lchami</strong>
+<p>Masalan, A4 formatini tanlash mumkin.</p>
+</div>
+
+<div class="page-demo">
+<div class="margin-label">↑ Yuqori hoshiya</div>
+<h3>Namunaviy hujjat</h3>
+<p>
+Sahifani formatlash hujjatni tartibli va o‘qishga qulay
+ko‘rinishga keltiradi. Hoshiyalar, sahifa yo‘nalishi va
+qog‘oz o‘lchami hujjatning umumiy ko‘rinishiga ta’sir qiladi.
+</p>
+<div class="margin-label">↓ Pastki hoshiya</div>
+</div>
+
+<h3>C. Print Preview nima?</h3>
+<p>
+<strong>Print Preview</strong> — hujjatni printerda chop etishdan
+oldin ekranda ko‘rib chiqish imkoniyati.
+</p>
+<p>
+Microsoft Word 2019 dasturida bu ko‘rinish odatda
+<strong>Файл → Печать</strong> bo‘limida ko‘rsatiladi.
+O‘ng tomonda hujjatning chop etilgandagi ko‘rinishi chiqadi.
+</p>
+
+<div class="note">
+<h3>⭐ Nima uchun Print Preview kerak?</h3>
+<ul>
+<li>Sahifadagi matn to‘liq joylashganini tekshirish.</li>
+<li>Bo‘sh yoki ortiqcha sahifalarni aniqlash.</li>
+<li>Hoshiyalarni va sahifa yo‘nalishini tekshirish.</li>
+<li>Qog‘oz va siyohni tejash.</li>
+</ul>
+</div>
+</section>
+
+<section class="section">
+<h2>💻 6. Amaliy mashg‘ulot — 15 daqiqa</h2>
+
+<p><strong>Topshiriq:</strong> Word dasturida hujjat yarating,
+sahifasini sozlang va chop etishdan oldin ko‘rib chiqing.</p>
+
+<ol class="steps">
+<li>Microsoft Word dasturini oching.</li>
+<li>Yangi hujjat yarating va unga “Mening maktabim” deb sarlavha yozing.</li>
+<li>Quyidagi matnni kiriting: “Mening maktabimda bilim olish uchun barcha sharoitlar yaratilgan. Informatika darslarida biz kompyuter dasturlari bilan ishlashni o‘rganamiz.”</li>
+<li><strong>Макет → Поля</strong> bo‘limidan mos hoshiya tanlang.</li>
+<li><strong>Макет → Ориентация</strong> orqali Книжная holatini tanlang.</li>
+<li><strong>Макет → Размер</strong> bo‘limidan A4 formatini tanlang.</li>
+<li><strong>Файл → Печать</strong> bo‘limini oching.</li>
+<li>Hujjatning oldindan ko‘rinishini tekshiring.</li>
+<li>Hammasi to‘g‘ri bo‘lsa, hujjatni saqlang. Printer bo‘lmasa, chop etish shart emas.</li>
+</ol>
+
+<div class="note">
+<strong>Diqqat!</strong> Print Preview hujjatni ko‘rish uchun xizmat qiladi.
+Printerdan chiqarish esa alohida amal. Hujjatni ko‘rib chiqish
+uchun uni albatta chop etish shart emas.
+</div>
+</section>
+
+<section class="section">
+<h2>🧠 7. Mustahkamlash — 7 daqiqa</h2>
+
+<div class="question"><strong>1.</strong> Sahifani formatlash nima?</div>
+<div class="question"><strong>2.</strong> Поля buyrug‘i qanday vazifani bajaradi?</div>
+<div class="question"><strong>3.</strong> Книжная va Альбомная yo‘nalishlarining farqi nimada?</div>
+<div class="question"><strong>4.</strong> Print Preview nima uchun ishlatiladi?</div>
+<div class="question"><strong>5.</strong> Hujjatni oldindan ko‘rib chiqish uchun uni printerdan chiqarish shartmi?</div>
+
+<details>
+<summary><strong>Javoblarni ko‘rish uchun bosing</strong></summary>
+<ol>
+<li>Sahifaning ko‘rinishini va parametrlarini sozlash.</li>
+<li>Sahifa chetlaridagi bo‘sh joylarni belgilash.</li>
+<li>Книжная — tik, Альбомная — yotiq yo‘nalish.</li>
+<li>Hujjatni chop etishdan oldin tekshirish.</li>
+<li>Yo‘q, ekranda ko‘rib chiqish kifoya.</li>
+</ol>
+</details>
+</section>
+
+<section class="section">
+<h2>🏅 8. Baholash — 2 daqiqa</h2>
+<ul>
+<li>Mavzuni tushunishi.</li>
+<li>Buyruqlarning vazifalarini ayta olishi.</li>
+<li>Sahifa parametrlarini to‘g‘ri sozlashi.</li>
+<li>Print Preview orqali hujjatni tekshirishi.</li>
+</ul>
+</section>
+
+<section class="section">
+<h2>🏠 9. Uyga vazifa — 1 daqiqa</h2>
+<p>
+“Sevimli fanim” mavzusida kichik matn tayyorlang.
+Word dasturida A4 qog‘oz formatini tanlang, hoshiyalarni
+sozlang va hujjatni Print Preview orqali tekshiring.
+</p>
+</section>
+
+<section class="summary">
+<h2>🌟 Darsning asosiy xulosasi</h2>
+<p class="rule">
+Sahifani sozla → Hujjatni tekshir → Keyin chop et!
+</p>
+<p>
+Print Preview hujjatning chop etilgandagi ko‘rinishini
+oldindan ko‘rishga va xatolarni vaqtida tuzatishga yordam beradi.
+</p>
+</section>
+
+<footer>
+© 2026 | Informatika va axborot texnologiyalari | 7-sinf
+</footer>
+
+</div>
+</body>
+</html>
